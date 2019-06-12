@@ -1,0 +1,19 @@
+{
+  "name": "ubongo-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "googleapis": "^39.2.0",
+    "pg": "^7.11.0"
+  }
+}
