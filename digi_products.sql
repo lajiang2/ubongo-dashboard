@@ -1,0 +1,5 @@
+CREATE TABLE ebooks (show_name VARCHAR(255), season VARCHAR(255), language VARCHAR(255), book VARCHAR(255), customer VARCHAR(255), country VARCHAR(255), month VARCHAR(255), year VARCHAR(255), copies INT, price DOUBLE, gross DOUBLE, royalty VARCHAR(255), net DOUBLE);
+
+CREATE TABLE ios_apps ( month VARCHAR(255), year VARCHAR(255), num_copies INT, price DOUBLE, gross DOUBLE, royalty VARCHAR(255), net DOUBLe);
+
+CREATE TABLE albums (sales_period VARCHAR(255), date VARCHAR(255), store_name VARCHAR(255), country VARCHAR(255), artist VARCHAR(255), relese_type VARCHAR(255), release_title VARCHAR(255), song_title VARCHAR(255), label VARCHAR(255), upc INT, optional_upc INT, song_id VARCHAR(255), optional_isrc VARCHAR(255), sales_type VARCHAR(255), units_sold INT, unit_price DOUBLE, net_sales DOUBLE, sales_currency VARCHAR(255), exchange_rate DOUBLE, total_earned DOUBLE, total_curency VARCHAR(255));
