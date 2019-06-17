@@ -67,3 +67,8 @@
     width: 100%;
   }
 }
+
+.dropdown {
+    width: 65%;
+    margin: auto;
+}
