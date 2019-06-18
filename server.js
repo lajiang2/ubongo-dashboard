@@ -105,7 +105,7 @@ app.route('/api/revenue/albums')
 app.route('/api/revenue/ios')
   .get(function(req, res, next) {
     db.query(
-      "SELECT month, year, SUM(net) AS reveunue FROM `ios_apps` GROUP BY month, year",
+      "SELECT month, year, SUM(net) AS revenue FROM `ios_apps` GROUP BY month, year",
       function(error, results, fields) {
         if (error) throw error;
         res.json(results);
