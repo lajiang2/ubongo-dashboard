@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-// import Select from 'react-select';
-// import { PieChart, LineChart } from 'react-chartkick'
-// import 'chart.js'
 import './Home.css';
 import 'react-dropdown/style.css';
 import * as Constants from '../constants'

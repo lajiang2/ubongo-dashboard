@@ -37,7 +37,8 @@
 .dropdown {
     width: 40%;
     margin: auto;
-    padding: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
     display: inline-block;
 }
 
@@ -70,7 +71,7 @@
     color: #FFEDE1;
 }
 
-.pie-chart {
+.chart {
     padding-bottom: 5%;
 }
 

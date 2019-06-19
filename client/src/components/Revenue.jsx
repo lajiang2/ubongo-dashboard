@@ -79,7 +79,6 @@ class Revenue extends Component {
     let startDate = new Date(this.state.pieStartMonth + this.state.pieStartYear);
     let endDate = new Date(this.state.pieEndMonth + this.state.pieEndYear);
 
-    // let dateKey = this.state.selectedMonth + '-' + this.state.selectedYear;
     Constants.DP_DICTS.forEach((dictName, i) => {
       let dpName = Constants.DP_ENDPOINTS[i];
       revenue[dpName] = 0;
@@ -183,105 +182,109 @@ class Revenue extends Component {
           textColor='#676767'
           text='loading your data'
         > 
-        <h1 className="revenue-title"> revenue data for digital products team </h1>
-        <div className="container">
-          <div className="box">
-            <h3 className="chart-title"> Revenue Growth by Digital Product </h3>
-            <LineChart data={this.state.revenueGrowthChart} xtitle="Month" ytitle="Revenue in USD"/>
-            <div className="dropdown-field">
-              Start:
+          <h1 className="revenue-title"> revenue data for digital products team </h1>
+          <div className="container">
+            <div className="box">
+              <h3 className="chart-title"> Revenue Growth by Digital Product </h3>
+              <div className="chart">
+                <LineChart data={this.state.revenueGrowthChart} xtitle="Month" ytitle="Revenue in USD"/>
+              </div>
+              <div className="dropdown-field">
+                Start:
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className="dropdown-color"
+                  options={Constants.MONTHS}
+                  onChange={this._onGrowthStartMonthSelect}
+                  value={this.state.growthStartMonth}
+                  placeholder="Select a month"
+                />
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className=""
+                  options={Constants.YEARS}
+                  onChange={this._onGrowthStartYearSelect}
+                  value={this.state.growthStartYear}
+                  placeholder="Select a year"
+                />
+              </div>
+              <div className="dropdown-field">
+                End:
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className="dropdown-color"
+                  options={Constants.MONTHS}
+                  onChange={this._onGrowthEndMonthSelect}
+                  value={this.state.growthEndMonth}
+                  placeholder="Select a month"
+                />
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className=""
+                  options={Constants.YEARS}
+                  onChange={this._onGrowthEndYearSelect}
+                  value={this.state.growthEndYear}
+                  placeholder="Select a year"
+                />
+              </div>
             </div>
-            <div className="dropdown">
-              <Dropdown
-                className="dropdown-color"
-                options={Constants.MONTHS}
-                onChange={this._onGrowthStartMonthSelect}
-                value={this.state.growthStartMonth}
-                placeholder="Select a month"
-              />
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className=""
-                options={Constants.YEARS}
-                onChange={this._onGrowthStartYearSelect}
-                value={this.state.growthStartYear}
-                placeholder="Select a year"
-              />
-            </div>
-            <div className="dropdown-field">
-              End:
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className="dropdown-color"
-                options={Constants.MONTHS}
-                onChange={this._onGrowthEndMonthSelect}
-                value={this.state.growthEndMonth}
-                placeholder="Select a month"
-              />
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className=""
-                options={Constants.YEARS}
-                onChange={this._onGrowthEndYearSelect}
-                value={this.state.growthEndYear}
-                placeholder="Select a year"
-              />
-            </div>
-          </div>
 
-          <div className="box">
-            <h3 className="chart-title"> Revenue for {this.state.selectedMonth}, {this.state.selectedYear} </h3>
-            <PieChart data={this.state.revenuePieChart} xtitle="Month" ytitle="Revenue in USD"/>
-            <div className="dropdown-field">
-              Start:
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className="dropdown-color"
-                options={Constants.MONTHS}
-                onChange={this._onPieStartMonthSelect}
-                value={this.state.pieStartMonth}
-                placeholder="Select a month"
-              />
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className=""
-                options={Constants.YEARS}
-                onChange={this._onPieStartYearSelect}
-                value={this.state.pieStartYear}
-                placeholder="Select a year"
-              />
-            </div>
-            <div className="dropdown-field">
-              End:
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className="dropdown-color"
-                options={Constants.MONTHS}
-                onChange={this._onPieEndMonthSelect}
-                value={this.state.pieEndMonth}
-                placeholder="Select a month"
-              />
-            </div>
-            <div className="dropdown">
-              <Dropdown
-                className=""
-                options={Constants.YEARS}
-                onChange={this._onPieEndYearSelect}
-                value={this.state.pieEndYear}
-                placeholder="Select a year"
-              />
+            <div className="box">
+              <h3 className="chart-title"> Revenue from {this.state.pieStartMonth}, {this.state.pieStartYear} to {this.state.pieEndMonth}, {this.state.pieEndYear} </h3>
+              <div className="chart">
+                <PieChart data={this.state.revenuePieChart} xtitle="Month" ytitle="Revenue in USD"/>
+              </div>
+              <div className="dropdown-field">
+                Start:
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className="dropdown-color"
+                  options={Constants.MONTHS}
+                  onChange={this._onPieStartMonthSelect}
+                  value={this.state.pieStartMonth}
+                  placeholder="Select a month"
+                />
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className=""
+                  options={Constants.YEARS}
+                  onChange={this._onPieStartYearSelect}
+                  value={this.state.pieStartYear}
+                  placeholder="Select a year"
+                />
+              </div>
+              <div className="dropdown-field">
+                End:
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className="dropdown-color"
+                  options={Constants.MONTHS}
+                  onChange={this._onPieEndMonthSelect}
+                  value={this.state.pieEndMonth}
+                  placeholder="Select a month"
+                />
+              </div>
+              <div className="dropdown">
+                <Dropdown
+                  className=""
+                  options={Constants.YEARS}
+                  onChange={this._onPieEndYearSelect}
+                  value={this.state.pieEndYear}
+                  placeholder="Select a year"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <button className="home-button" onClick={this.routeToHome}>home</button>
-        </div>
+          <div>
+            <button className="home-button" onClick={this.routeToHome}>home</button>
+          </div>
         </LoadingScreen>
       </div>
     );
