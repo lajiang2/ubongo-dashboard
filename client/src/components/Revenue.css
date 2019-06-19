@@ -28,6 +28,12 @@
     background-color: #59452c;
 }
 
+.dropdown-field {
+    position: relative;
+    bottom: 2.5vh;
+    display: inline-block;
+}
+
 .dropdown {
     width: 40%;
     margin: auto;
@@ -48,8 +54,10 @@
 
 .Dropdown-option {
     background-color: #DCEDFF;
- /*   border-radius: 0.4rem;
-    border-color: #59452c;*/
+}
+
+.Dropdown-option:hover {
+    background-color: #FFEDE1;
 }
 
 .Dropdown-menu {
@@ -58,7 +66,8 @@
 }
 
 .Dropdown-option.is-selected {
-    background-color: #ffede1;
+    background-color: #59452c;
+    color: #FFEDE1;
 }
 
 .pie-chart {
