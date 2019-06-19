@@ -15,3 +15,5 @@ mysql commands: http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
 cloud store: https://console.cloud.google.com/storage/browser/ubongo-learning?project=flawless-agency-243607&folder&organizationId=236622902988
 
 database instance: https://console.cloud.google.com/sql/instances/ubongo-learning/overview?project=flawless-agency-243607
+
+colors: #83d3cf, #3e505b, #dcedff, #59452c, #ffede1

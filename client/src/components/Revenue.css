@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Mandali:400,700,900');
+
+.revenue-title {
+    color: #3E505B;
+    margin: auto;
+    padding-top: 3vh;
+}
+
+.chart-title {
+    color: #3E505B;
+}
+
+.home-button {
+    width: 65%;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    color: #59452c;
+    background-color: #DCEDFF;
+    margin-top: 3vh;
+    border: solid;
+    cursor: pointer;
+    transition: color ease-in 100ms;
+}
+
+.home-button:hover {
+    color: #ffede1;
+    background-color: #59452c;
+}
+
+.dropdown {
+    width: 40%;
+    margin: auto;
+    padding: 3%;
+    display: inline-block;
+}
+
+.Dropdown-control {
+    background-color: #DCEDFF;
+    border-radius: 0.4rem;
+    border-color: #59452c;
+}
+
+.Dropdown-placeholder {
+    font-family: 'Mandali', sans-serif;
+    color: #59452c;
+}
+
+.Dropdown-option {
+    background-color: #DCEDFF;
+ /*   border-radius: 0.4rem;
+    border-color: #59452c;*/
+}
+
+.Dropdown-menu {
+    border-radius: 0.4rem;
+    border-color: #59452c;
+}
+
+.Dropdown-option.is-selected {
+    background-color: #ffede1;
+}
+
+.pie-chart {
+    padding-bottom: 5%;
+}
+
