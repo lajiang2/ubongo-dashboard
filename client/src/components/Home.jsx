@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-import Select from 'react-select';
+// import Select from 'react-select';
 import { PieChart, LineChart } from 'react-chartkick'
 import 'chart.js'
 import './Home.css';
@@ -16,8 +16,11 @@ class Home extends Component {
       ebooksDict: {},
       iOSDict: {},
       albumsDict: {},
-      // selectedMonth: Constants.MONTHS[new Date().getMonth() + 1],
-      // selectedYear: new Date().getFullYear().toString(),
+      youtubeAkiliEnDict: {},
+      youtubeAkiliSwDict: {},
+      youtubeUbongoEnDict: {},
+      youtubeUbongoSwDict: {},
+      merchDict: {},
       selectedMonth: 'March',
       selectedYear: '2018',
       revenueDisplayData: {}
@@ -25,43 +28,12 @@ class Home extends Component {
     this._onYearSelect = this._onYearSelect.bind(this);
     this._onMonthSelect = this._onMonthSelect.bind(this);
     this.updateDicts = this.updateDicts.bind(this);
+    this.setRevenueDisplayData = this.setRevenueDisplayData.bind(this);
   }
 
   componentDidMount() {
     this.updateBroadcastReach();
-    // this.updateEbooksDict();
-    // this.updateiOSDict();
-    // this.updateAlbumsDict();
-    this.updateDicts(['ebooks', 'iOS', 'albums'])
-    // this.setRevenueDisplayData();
-  }
-
-  async updateDicts(revenueSources) {
-    // console.log(revenueSources);
-    let revenueDisplayData = {};
-    let dateKey = this.state.selectedMonth + this.state.selectedYear;
-
-    revenueSources.forEach(async (revenueSource) => {
-      let dictString = revenueSource + 'Dict';
-
-      const res = await fetch('/api/revenue/' + revenueSource);
-      const resJson = res.json();
-      resJson.then(result => {
-        let revenueSourceDict = {};
-        let i;
-        for (i = 0; i < result.length; i++) { 
-          revenueSourceDict[result[i].month + result[i].year] = result[i].revenue;
-          if (dateKey === result[i].month + result[i].year) {
-            revenueDisplayData[revenueSource] = result[i].revenue;
-          }
-        }
-
-        this.setState({[dictString]: revenueSourceDict});
-
-      });
-    });
-
-    this.setState({revenueDisplayData: revenueDisplayData});
+    this.updateDicts(this.setRevenueDisplayData);
   }
 
   async updateBroadcastReach() {
@@ -78,20 +50,50 @@ class Home extends Component {
     });
   }
 
+  async updateDicts(callback) {
+    Constants.DP_ENDPOINTS.forEach(async (revenueSource, i) => {
+      let dictString = Constants.DP_DICTS[i];
+
+      const res = await fetch('/api/revenue/' + revenueSource);
+      const resJson = res.json();
+      resJson.then(result => {
+        let revenueSourceDict = {};
+        let i;
+        for (i = 0; i < result.length; i++) { 
+          revenueSourceDict[result[i].month + result[i].year] = Math.round(result[i].revenue * 100) / 100;
+        }
+        this.setState({[dictString]: revenueSourceDict});
+      });
+      if (i === Constants.DP_ENDPOINTS.length - 1) {
+        callback();
+      }
+    });
+  }
+
   setRevenueDisplayData() {
+    console.log("here");
     let revenue = {};
-    let dateKey = this.state.selectedYear + this.state.selectedMonth
-    revenue["ebooks"] = this.state.ebooksDict[dateKey];
-    revenue["albums"] = this.state.albumsDict[dateKey];
-    revenue["ebooks"] = this.state.ebooksDict[dateKey];
+    let dateKey = this.state.selectedMonth + this.state.selectedYear;
+    Constants.DP_ENDPOINTS.forEach(async (dp, i) => {
+      let dictString = Constants.DP_DICTS[i];
+      revenue[dp] = this.state[dictString][dateKey];
+    });
+
+    console.log("revenue", revenue);
+
+    this.setState({ revenueDisplayData: revenue })
   }
 
   _onYearSelect(option) {
-    this.setState({ selectedYear: option });
+    this.setState({ selectedYear: option.value }, () => {
+      this.setRevenueDisplayData();
+    });
   }
 
   _onMonthSelect(option) {
-    this.setState({ selectedMonth: option });
+    this.setState({ selectedMonth: option.value }, () => {
+      this.setRevenueDisplayData();
+    });
   }
 
   render() {
@@ -131,10 +133,5 @@ class Home extends Component {
       
     );
   }
-  // render() {
-  //   return (
-  //     <LineChart data={this.state.broadcastReachDict} xtitle="Month" ytitle="Reach (in millions)" />
-  //   );
-  // }
 }
 export default Home;

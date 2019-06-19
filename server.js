@@ -63,7 +63,6 @@ app.get('/api/broadcast-reach', async (req, res) => {
     } else {
       console.log('No data found.');
     }
-    console.log(rows);
     res.send(rows);
   });
 })
@@ -85,7 +84,6 @@ app.route('/api/revenue/ebooks')
       "SELECT month, year, SUM(net) AS revenue FROM `ebooks` GROUP BY month, year",
       function(error, results, fields) {
         if (error) throw error;
-        console.log(results);
         res.json(results);
       }
     );
@@ -113,7 +111,60 @@ app.route('/api/revenue/ios')
     );
   });
 
+app.route('/api/revenue/youtube-akili-en')
+  .get(function(req, res, next) {
+    db.query(
+      "SELECT month, year, estimated_revenue AS revenue FROM `youtube_akili_en`",
+      function(error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+      }
+    );
+  });
 
+app.route('/api/revenue/youtube-akili-sw')
+  .get(function(req, res, next) {
+    db.query(
+      "SELECT month, year, estimated_revenue AS revenue FROM `youtube_akili_sw`",
+      function(error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+      }
+    );
+  });
+
+app.route('/api/revenue/youtube-ubongo-en')
+  .get(function(req, res, next) {
+    db.query(
+      "SELECT month, year, estimated_revenue AS revenue FROM `youtube_ubongo_en`",
+      function(error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+      }
+    );
+  });
+
+app.route('/api/revenue/youtube-ubongo-sw')
+  .get(function(req, res, next) {
+    db.query(
+      "SELECT month, year, estimated_revenue AS revenue FROM `youtube_ubongo_sw`",
+      function(error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+      }
+    );
+  });
+
+app.route('/api/revenue/merch')
+  .get(function(req, res, next) {
+    db.query(
+      "SELECT t1.month, t1.year, t1.net - t2.total as revenue FROM shopify as t1 INNER JOIN printful as t2 ON t1.order_num=t2.order_num;",
+      function(error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+      }
+    );
+  });
 
 app.get('/status', (req, res) => res.send('Working!'));
 
