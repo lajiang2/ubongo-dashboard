@@ -4,3 +4,5 @@ credentials.json
 token.json
 .env
 package-lock.json
+client/src/.apiKeys.js
+client/package-lock.json

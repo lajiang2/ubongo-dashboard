@@ -31,7 +31,8 @@ class Revenue extends Component {
       growthEndMonth: 'March',
       growthEndYear: '2019',
       revenuePieChart: {},
-      revenueGrowthChart: {}
+      revenueGrowthChart: {},
+      revenuePieNumber: "",
     };
     this.updateDicts = this.updateDicts.bind(this);
     this.setRevenuePieChart = this.setRevenuePieChart.bind(this);
@@ -76,6 +77,7 @@ class Revenue extends Component {
 
   setRevenuePieChart() {
     let revenue = {};
+    let revenueTotal = 0;
     let startDate = new Date(this.state.pieStartMonth + this.state.pieStartYear);
     let endDate = new Date(this.state.pieEndMonth + this.state.pieEndYear);
 
@@ -87,11 +89,16 @@ class Revenue extends Component {
         let tempDate = new Date(key);
         if (tempDate >= startDate && tempDate <= endDate) {
           revenue[dpName] = revenue[dpName] + value;
+          revenueTotal = revenueTotal + value;
+          console.log(revenueTotal);
         }  
       }
     });
 
-    this.setState({ revenuePieChart: revenue })
+    this.setState({ 
+      revenuePieChart: revenue,
+      revenuePieNumber: revenueTotal,
+    });
   }
 
   setRevenueGrowthChart() {
@@ -235,8 +242,11 @@ class Revenue extends Component {
 
             <div className="box">
               <h3 className="chart-title"> Revenue from {this.state.pieStartMonth}, {this.state.pieStartYear} to {this.state.pieEndMonth}, {this.state.pieEndYear} </h3>
-              <div className="chart">
+              <div className="chart pie-chart">
                 <PieChart data={this.state.revenuePieChart} xtitle="Month" ytitle="Revenue in USD"/>
+              </div>
+              <div className="revenue-number">
+                Total {"$" + Math.round(this.state.revenuePieNumber).toString(10)}
               </div>
               <div className="dropdown-field">
                 Start:

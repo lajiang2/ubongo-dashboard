@@ -16,4 +16,4 @@ cloud store: https://console.cloud.google.com/storage/browser/ubongo-learning?pr
 
 database instance: https://console.cloud.google.com/sql/instances/ubongo-learning/overview?project=flawless-agency-243607
 
-colors: #83d3cf, #3e505b, #dcedff, #59452c, #ffede1
+colors: #83d3cf, #3e505b, #dcedff, #59452c, #FFEDE1

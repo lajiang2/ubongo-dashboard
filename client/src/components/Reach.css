@@ -1,0 +1,27 @@
+.sub-count {
+	display: inline-block;
+	font-size: 30px;
+	width: 100%;
+}
+
+.youtube-subs {
+	display: inline-block;
+}
+
+.update-button {
+    width: 65%;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    color: #59452c;
+    background-color: #DCEDFF;
+    margin-top: 3vh;
+    border: solid;
+    cursor: pointer;
+    transition: color ease-in 100ms;
+}
+
+.update-button:hover {
+    color: #ffede1;
+    background-color: #59452c;
+}
